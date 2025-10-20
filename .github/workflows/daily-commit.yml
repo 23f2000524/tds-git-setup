@@ -1,0 +1,33 @@
+name: Daily Commit
+
+on:
+  schedule:
+    - cron: '15 16 * * *'   # daily at 15:11 UTC
+  workflow_dispatch:
+
+jobs:
+  commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          ref: main               # make sure this is your default branch
+          persist-credentials: true  # allows git push using the GitHub token
+
+      - name: Add commit by 23f2000524@ds.study.iitm.ac.in
+        run: |
+          # Create a new random file to ensure a commit
+          FILENAME="daily_commit_$(date +%s)_$RANDOM.txt"
+          echo "Automated daily commit at $(date)" > $FILENAME
+          echo "Automated daily commit for 23f2000524@ds.study.iitm.ac.in" > $FILENAME
+          echo "Run timestamp: $(date)" >> $FILENAME
+          echo "This file is generated automatically by GitHub Actions." >> $FILENAME
+          # Configure git
+          git config user.name "Daily Commit Bot"
+          git config user.email "23f2000524@ds.study.iitm.ac.in"
+
+          # Stage, commit, and push
+          git add $FILENAME
+          git commit -m "Automated daily commit: $FILENAME"
+          git push origin main
