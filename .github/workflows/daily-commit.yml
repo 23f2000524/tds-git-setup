@@ -1,4 +1,4 @@
-name: Daily Commit
+name: Daily Commit 23f2000524@ds.study.iitm.ac.in
 
 on:
   schedule:
@@ -9,7 +9,7 @@ jobs:
   commit:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Checkout repository 23f2000524@ds.study.iitm.ac.in
         uses: actions/checkout@v3
         with:
           ref: main                  # ensure you are on the main branch
