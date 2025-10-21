@@ -11,14 +11,14 @@ jobs:
 
     steps:
       # Step 1: Checkout repository
-      - name: Checkout repository
+      - name: Checkout 23f2000524@ds.study.iitm.ac.in repository 
         uses: actions/checkout@v3
         with:
           ref: main
           persist-credentials: true  # ensures pushes use configured author
 
       # Step 2: Create daily commit
-      - name: Add daily commit
+      - name: Add 23f2000524@ds.study.iitm.ac.in daily commit
         run: |
           # Create a uniquely named file
           FILE="daily_commit_$(date +%s)_$RANDOM.txt"
