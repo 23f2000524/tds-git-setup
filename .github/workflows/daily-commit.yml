@@ -1,32 +1,35 @@
-name: 23f2000524@ds.study.iitm.ac.in
+name: Daily Commit 23f2000524@ds.study.iitm.ac.in
 
 on:
   schedule:
-    - cron: '11 15 * * *'
+    - cron: '11 15 * * *'  # runs daily at 15:11 UTC
   workflow_dispatch:
 
 jobs:
   commit:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repository 23f2000524@ds.study.iitm.ac.in
+      # Step 1: Checkout repository
+      - name: Checkout repository
         uses: actions/checkout@v3
         with:
-          ref: main                  # ensure you are on the main branch
-          persist-credentials: true  # allows push
+          ref: main
+          persist-credentials: true  # ensures pushes use configured author
 
-      - name: Add commit by 23f2000524@ds.study.iitm.ac.in
+      # Step 2: Create daily commit
+      - name: Add daily commit
         run: |
-          # Create a new file with unique name
+          # Create a uniquely named file
           FILE="daily_commit_$(date +%s)_$RANDOM.txt"
 
-          # Add content
+          # Add content to the file
           echo "Automated daily commit by 23f2000524@ds.study.iitm.ac.in" > $FILE
-          echo "Timestamp: $(date)" >> $FILE
+          echo "Timestamp: $(date -u)" >> $FILE
           echo "This file is created automatically by GitHub Actions." >> $FILE
 
-          # Configure Git
-          git config user.name "Daily Commit Bot"
+          # Configure Git with exact author info
+          git config user.name "23f2000524"
           git config user.email "23f2000524@ds.study.iitm.ac.in"
 
           # Add, commit, and push
